@@ -1,9 +1,8 @@
 import * as Device from "expo-device";
-import { Platform, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import { Platform, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { AnimatedIcon } from "@/components/animated-icon";
-import { HintRow } from "@/components/hint-row";
+import TaskItem from "@/components/task-item";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
@@ -53,20 +52,6 @@ const DATA: ItemData[] = [
   },
 ];
 
-type ItemProps = {
-  item: ItemData;
-  onPress: () => void;
-  backgroundColor: string;
-  textColor: string;
-};
-
-const Task = ({item, onPress, backgroundColor, textColor}: ItemProps) => (
-  <TouchableOpacity onPress={onPress} style={[styles.task, {backgroundColor}]}>
-    <ThemedText style={[styles.text, {color: textColor}]}>{item.title}</ThemedText>
-    <ThemedText style={[styles.text, {color: textColor}]}>{item.screenTimeReward} minutes</ThemedText>
-  </TouchableOpacity>
-);
-
 export default function HomeScreen() {
   const [selectedId, setSelectedId] = useState<string>();
   
@@ -75,7 +60,7 @@ export default function HomeScreen() {
     const color = item.id === selectedId ? "white" : "black";
 
     return (
-      <Task
+      <TaskItem
         item={item}
         onPress={() => setSelectedId(item.id)}
         backgroundColor={backgroundColor}
@@ -130,9 +115,6 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
   },
-  text: {
-    textAlign: "left",
-  },
   code: {
     textTransform: "uppercase",
   },
@@ -142,12 +124,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.four,
     borderRadius: Spacing.four,
-  },
-  task: {
-    paddingHorizontal: Spacing.two,
-    paddingVertical: Spacing.three,
-    textAlign: "left",
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
   },
 });
