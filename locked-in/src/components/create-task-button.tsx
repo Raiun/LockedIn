@@ -1,4 +1,5 @@
 import { Pressable, Text, StyleSheet } from "react-native";
+import Feather from '@expo/vector-icons/Feather';
 
 export default function CreateTaskButton() {
     return (
@@ -6,15 +7,14 @@ export default function CreateTaskButton() {
             onPress={() => {console.log("Create Task Button Pressed")}}
             style={styles.button}
         >
-            <Text style={styles.buttonText}>+</Text>
+            <Feather name="edit" size={36} color="white" />
         </Pressable>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        padding: 2,
-        paddingHorizontal: 10,
+        padding: 5,
         backgroundColor: "#000000",
         borderRadius: 10,
     },

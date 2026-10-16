@@ -8,6 +8,7 @@ import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { useState } from "react";
+import CreateTaskButton from "@/components/create-task-button";
 
 function getDevMenuHint() {
   if (Platform.OS === "web") {
@@ -84,6 +85,8 @@ export default function HomeScreen() {
             extraData={selectedId}
             />
         </ThemedView>
+
+        <CreateTaskButton />
 
         {Platform.OS === "web" && <WebBadge />}
       </SafeAreaView>
